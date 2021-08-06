@@ -2,8 +2,8 @@ const { Router } = require('express');
 const router = Router();
 
 // importing Controllers
-const { addActivity } = require('../controllers/activity')
+const { addActivity } = require('../controllers/activity');
 
-router.post("/activity", addActivity);
+router.post("/", addActivity);
 
 module.exports = router;

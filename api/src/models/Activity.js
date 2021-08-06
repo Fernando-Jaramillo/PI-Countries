@@ -11,7 +11,9 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
         },
         dificultyLevel: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.ENUM({
+                values: ["1","2","3","4","5"]
+            })
         },
         term: {
             type: DataTypes.STRING,
@@ -21,3 +23,4 @@ module.exports = (sequelize) => {
         },
     });
 };
+

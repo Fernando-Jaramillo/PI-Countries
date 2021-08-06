@@ -1,23 +1,24 @@
 const { Activity } = require('../db');
+const { v4: uuidv4 } = require("uuid");
 
 // esta función anade una actividad a la tabla
 
-function addActivity( req, res, next){
-    const {
-        name,
-        dificultyLevel,
-        term,
-        season} = req.body
-    if(!req.body) return res.send({ error: 500, msg: "no has llenado todos los campos requeridos"})
-    return Activity.create({id: id,
-        name: name,
-        dificultyLevel: dificultyLevel,
-        term: term,
-        season: season})
-        .then(activity => res.send(activity))
-        .catch(err => next(err))
+async function addActivity( req, res, next){
+    const body = req.body;
+    const id = uuidv4();
+    const data = {...body, id}
+    try{
+        let createdData = await Activity.create(data)
+        return res.send(createdData)
+    }catch (err){
+        next(err);
+    }
+    // console.log(req.body)
+    // Activity.create(req.body)
+    //     .then(response => res.send(response))
+    //     .catch(err => next(err))
 }
 
 module.exports = {
-    addActivity
+    addActivity,
 }
