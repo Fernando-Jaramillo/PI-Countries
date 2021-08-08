@@ -1,4 +1,4 @@
-const { Activity } = require('../db');
+const { Activity, Country } = require("../db");
 const { v4: uuidv4 } = require("uuid");
 
 // esta función anade una actividad a la tabla
@@ -8,8 +8,15 @@ async function addActivity( req, res, next){
     const id = uuidv4();
     const data = {...body, id}
     try{
-        let createdData = await Activity.create(data)
-        return res.send(createdData)
+        let createdActivity = await Activity.create(data)
+        let foundCountry;
+        await body.arrCountries.map( async (c) => {
+            foundCountry =  await Country.findOne({where: { id : c }})
+            await createdActivity.addCountry(foundCountry);
+            if(foundCountry) {return res.send(foundCountry);}
+        })
+        Country.findAll()
+            .then( users => res.send(users))
     }catch (err){
         next(err);
     }
