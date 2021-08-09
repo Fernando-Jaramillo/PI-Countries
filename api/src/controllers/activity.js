@@ -11,12 +11,10 @@ async function addActivity( req, res, next){
         let createdActivity = await Activity.create(data)
         let foundCountry;
         await body.arrCountries.map( async (c) => {
-            foundCountry =  await Country.findOne({where: { id : c }})
+            foundCountry =  await Country.findAll({where: { id : c.toUpperCase() }})
             await createdActivity.addCountry(foundCountry);
-            if(foundCountry) {return res.send(foundCountry);}
         })
-        Country.findAll()
-            .then( users => res.send(users))
+        res.send(createdActivity);
     }catch (err){
         next(err);
     }
