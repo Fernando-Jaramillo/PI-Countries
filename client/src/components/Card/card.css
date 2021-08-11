@@ -1,3 +1,13 @@
 .card{
-    border: 1px, solid, black;
+    width: 400px;
+    border: 6px solid red;
+    color: red;
+    margin-top: 20px;
+}
+
+img{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
 }

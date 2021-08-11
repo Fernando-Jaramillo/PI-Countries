@@ -8,7 +8,7 @@ import { getCountries } from "../../actions";
 export default function Search() {
     return(
         <form>
-            <label for="title" >Buscar Paises</label>
+            <label htmlFor="title" >Buscar Paises</label>
             <input type="text" id="title"/>
             <button type="submit">Buscar</button>
         </form>

@@ -9,7 +9,7 @@ export default function Navbar() {
     return (
       <div>
         <h3>Navbar</h3>
-        <Link to="#">Home</Link>
+        <Link to="/home">Home</Link>
         <Link to="#">Crear Personaje</Link>
         <Link to="#"></Link>
         <Link to="#"></Link>
