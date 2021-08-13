@@ -9,3 +9,17 @@ export function getCountries(){
         })
     }
 }
+
+export function filterByContinent(payload){
+    return{
+        type: "FILTER_BY_CONTINENT",
+        payload
+    }
+}
+
+export function orderByAlphabet (payload) {
+    return{
+        type: "FILTER_BY_ALPHABET",
+        payload
+    }
+}
