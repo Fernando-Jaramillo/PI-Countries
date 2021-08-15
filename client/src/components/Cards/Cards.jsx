@@ -6,9 +6,15 @@ export default function Cards({allCountries, indexOfLastCountry, indexofFirstCou
     return (
         <div>
             <h2>Cards conteins:</h2>
-            {allCountries && countriesPage.map((c) => 
-                <Card key={c.id} name={c.name} continent={c.continent} image={c.imagenFlag} />
-            )}
+            {allCountries &&
+            countriesPage.map((c) => (
+                <Card
+                key={c.id || c.alpha3Code}
+                name={c.name}
+                continent={c.continent}
+                image={c.imagenFlag || c.flag}
+                />
+            ))}
         </div>
     );
 }
