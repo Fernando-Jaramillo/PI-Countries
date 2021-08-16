@@ -48,3 +48,15 @@ export function getByPopulation(edge){
         payload: edge
     }
 }
+
+export function postActivity(actBody){
+    console.log(actBody)
+    return async function(dispatch){
+        try{
+            let json = await axios.post("http://localhost:3001/activity/", actBody);
+            return json;
+        }catch(err){
+            console.log(err)
+        }
+    }   
+}

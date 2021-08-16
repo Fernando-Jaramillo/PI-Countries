@@ -11,8 +11,6 @@ export default function Navbar({ handleGetSearch }) {
             <h3>Navbar</h3>
             <Link to="/home">Home</Link>
             <Link to="#">Crear Actividad</Link>
-            <Link to="#"></Link>
-            <Link to="#"></Link>
             <Search handleGetSearch={handleGetSearch}/>
         </div>
     );

@@ -75,7 +75,9 @@ function rootReducer(state = initialSatate, action){
             return{
                 ...state,
                 countries: filteredCountriesByPopulation
-            }
+            };
+        case "POST_ACTIVITY":
+            return state;
         default:
         return state;
     }

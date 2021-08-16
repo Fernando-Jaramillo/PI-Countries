@@ -3,7 +3,6 @@ const axios = require('axios');
 const {
     ALL_COUNTRIES,
     COUNTRIES_BY_NAME,
-    ONE_COUNTRY_BY_CODE,
 } = require("../../constants");
 // const Activity = require('../models/Activity');
 
@@ -67,7 +66,6 @@ async function getCountryById(req, res, next){
                 }
             }
         });
-        // await axios.get(`${ONE_COUNTRY_BY_CODE}${req.params.id}`);
         return res.send(country);
         }
     }catch(err){
