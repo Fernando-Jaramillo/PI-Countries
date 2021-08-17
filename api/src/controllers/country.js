@@ -43,7 +43,15 @@ async function getCountries (req, res, next){
         return res.send(countries.data);
     } else {
         await getAll();
-        let all = await Country.findAll();
+        let all = await Country.findAll({
+            include: {
+                model: Activity,
+                attributes: ["id", "name", "dificultyLevel", "term", "season"],
+                through: {
+                attributes: [],
+                },
+            },
+        });
         return res.send(all);
     }
     }catch(err){

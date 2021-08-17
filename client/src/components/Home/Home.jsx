@@ -6,20 +6,25 @@ import Filters from "../Filters/Filters"
 import Pagination from "../Pagination/Pagination";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { 
-    getCountries, 
-    filterByContinent, 
-    orderByAlphabet,
-    getByPopulation
-    } from "../../actions";
+import {
+  getCountries,
+  filterByContinent,
+  orderByAlphabet,
+  getByPopulation,
+  getActivities,
+  filterByActivity
+} from "../../actions";
 
 export default function Home() {
-  // getting all countries
     const dispatch = useDispatch();
-    const allCountries = useSelector((state) => state.countries);
+    // getting all countries
+    const allCountries = useSelector(state => state.countries);
+    // getting all activities
+    const allActivities = useSelector(state => state.activities);
 
     useEffect(() => {
         dispatch(getCountries());
+        dispatch(getActivities());
     }, [dispatch]);
 
     // Pagination
@@ -47,6 +52,10 @@ export default function Home() {
         setCurrentPage(1);
         setOrder(`the order is ${edge}`);
     }
+
+    const handleFilterByActivity = (act) => {
+        dispatch(filterByActivity(act));
+    }
     
     return (
         <div>
@@ -55,6 +64,7 @@ export default function Home() {
             handleFilterByContinent={handleFilterByContinent}
             handleFilterByAlphabet={handleFilterByAlphabet}
             handleFilterByPopulation={handleFilterByPopulation}
+            handleFilterByActivity={handleFilterByActivity}
         />
         <Cards
             allCountries={allCountries}

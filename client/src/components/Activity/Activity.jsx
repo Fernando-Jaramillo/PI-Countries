@@ -4,7 +4,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCountries } from "../../actions/";
 import { Link } from "react-router-dom";
 import { postActivity } from "../../actions";
-
+// error control
+function validate(state) {
+    let errors = {};
+    if(!state.name){
+        errors.name = "el nombre de la actividad es requerida";
+    } else if (!state.dificultyLevel) {
+        errors.dificultyLevel = "La dificultad de la actividad es requerida";
+    } else if (Number(state.dificultyLevel) > 5){
+        errors.dificultyLevel = "El nivel máximo de dificultad es 5";
+    }else if(!state.term){
+        errors.term = "El tiempo de la actividad es requerido";
+    }else if(isNaN(state.term)){
+        errors.term = "El tiempo de la actividad debe ser un número";
+    }else if(state.term % 1 !== 0){
+        errors.term = "El tiempo de la actividade debe ser representado en numeros enteros"
+    }else if(!state.season){
+        errors.season = "la temporada es requerida"
+    }else if(!state.arrCountries.lenght < 1){
+        errors.arrCountries = "selecciona al menos un país donde se realiza esta actividad";
+    }
+    return errors;
+}
 
 export default function Activity() {
     const dispatch = useDispatch();
@@ -17,6 +38,8 @@ export default function Activity() {
         season:"",
         arrCountries: []
     });
+    // state to controlate errors
+    const [errors, setErrors] = useState({});
 
     function handleOnchange(e){
         if(e.target.name === "arrCountries"){
@@ -38,6 +61,10 @@ export default function Activity() {
                 [e.target.name] : e.target.value
             })
         }
+        setErrors(validate({
+            ...bodyActivity,
+                [e.target.name] : e.target.value
+        }));
     }
 
     function handleSubmit(e){
@@ -49,11 +76,12 @@ export default function Activity() {
             term:"",
             season:"",
             arrCountries: []
-        })
+        });
+        alert('actividad creada..!');
     }
 
     useEffect(() =>{
-        dispatch(getCountries(bodyActivity));
+        dispatch(getCountries());
     },[])
 
     return (
@@ -68,6 +96,7 @@ export default function Activity() {
                 value={bodyActivity.name}
                 id="name"
             />
+            {errors.name && <p>{errors.name}</p>}
             <label htmlFor="dificultyLevel">Dificultad: </label>
             <input
                 onChange={(e) => handleOnchange(e)}
@@ -76,6 +105,7 @@ export default function Activity() {
                 value={bodyActivity.dificultyLevel}
                 id="dificultyLevel"
             />
+            {errors.dificultyLevel && <p>{errors.dificultyLevel}</p>}
             <label htmlFor="term">Duración (min): </label>
             <input
                 onChange={(e) => handleOnchange(e)}
@@ -84,6 +114,7 @@ export default function Activity() {
                 value={bodyActivity.term}
                 id="term"
             />
+            {errors.term && <p>{errors.term}</p>}
             <label htmlFor="season">Temporada: </label>
             <select onChange={(e) => handleOnchange(e)} name="season" id="season">
                 <option value="Otoño">Otoño</option>
@@ -91,6 +122,7 @@ export default function Activity() {
                 <option value="Verano">Verano</option>
                 <option value="Primavera">Primavera</option>
             </select>
+            {errors.season && <p>{errors.season}</p>}
             <label htmlFor="arrCountries">Países: </label>
             <select
                 onChange={(e) => handleOnchange(e)}
@@ -103,9 +135,10 @@ export default function Activity() {
                 </option>
                 ))}
             </select>
-            <span>Has selccionado estos países: </span>
+            {errors.arrCountries && <p>{errors.arrCountries}</p>}
+            {bodyActivity.arrCountries.length > 0 && <span>Has seleccionado estos países: </span>}
             {bodyActivity.arrCountries.map((item) => (
-                <span>{item}, </span>
+                <span key={item}>{item}, </span>
             ))}
             <button type="submit">Crear Actividad</button>
             </form>

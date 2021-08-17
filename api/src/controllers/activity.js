@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require("uuid");
 
 // esta función anade una actividad a la tabla
 
-async function addActivity( req, res, next){
+async function addActivity(req, res, next){
     const body = req.body;
     const id = uuidv4();
     const data = {...body, id}
@@ -24,6 +24,12 @@ async function addActivity( req, res, next){
     //     .catch(err => next(err))
 }
 
+async function getActivity(req, res, next) {
+    const activities = await Activity.findAll()
+    res.send(activities);
+}
+
 module.exports = {
     addActivity,
+    getActivity
 }

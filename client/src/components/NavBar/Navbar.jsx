@@ -10,7 +10,7 @@ export default function Navbar({ handleGetSearch }) {
         <div>
             <h3>Navbar</h3>
             <Link to="/home">Home</Link>
-            <Link to="#">Crear Actividad</Link>
+            <Link to="/activity">Crear Actividad</Link>
             <Search handleGetSearch={handleGetSearch}/>
         </div>
     );

@@ -1,7 +1,10 @@
+import { getActivities } from "../actions";
+
 const initialSatate = {
     countries : [],
-    allCountries: []
-    
+    allCountries: [],
+    detail: [],
+    activities: []
 }
 function rootReducer(state = initialSatate, action){
     switch (action.type) {
@@ -78,6 +81,34 @@ function rootReducer(state = initialSatate, action){
             };
         case "POST_ACTIVITY":
             return state;
+        case "GET_DETAIL":
+            return{
+                ...state,
+                detail: action.payload
+            }
+        case "GET_ACTIVITIES":
+            return{
+                ...state,
+                activities: action.payload
+            }
+        case "FILTER_BY_ACTIVITY":
+            let countriesToOrderByAct = state.allCountries;
+            let filteredByAct =[];
+            for(let j = 0; j < countriesToOrderByAct.length; j++){
+                if(countriesToOrderByAct[j].activities.length > 0){
+                    // console.log(countriesToOrderByAct[j]);
+                    for(let i = 0; i < countriesToOrderByAct[j].activities.length; i++){
+                    console.log(countriesToOrderByAct[j].activities[i]);
+                        if(countriesToOrderByAct[j].activities[i].name.toLowerCase() === action.payload.toLowerCase()){
+                            filteredByAct.push(countriesToOrderByAct[j])
+                        }
+                    }
+                }
+            }
+            return{
+                ...state,
+                countries: filteredByAct
+            }
         default:
         return state;
     }

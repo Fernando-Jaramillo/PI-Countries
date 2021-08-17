@@ -9,12 +9,14 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <div className="App">
+        <>
+        <div>          
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/activity" component={Activity} />
           <Route excat path="/home/:id" component={CountryDetails} />
         </div>
+        </>
       </Switch>
     </BrowserRouter>
   );

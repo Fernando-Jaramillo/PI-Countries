@@ -49,8 +49,14 @@ export function getByPopulation(edge){
     }
 }
 
+export function filterByActivity(act){
+    return{
+        type: "FILTER_BY_ACTIVITY",
+        payload: act
+    }
+}
+
 export function postActivity(actBody){
-    console.log(actBody)
     return async function(dispatch){
         try{
             let json = await axios.post("http://localhost:3001/activity/", actBody);
@@ -60,3 +66,32 @@ export function postActivity(actBody){
         }
     }   
 }
+
+export function getDetail(id) {
+    return async function (dispatch){
+        try{
+            let json = await axios.get(`http://localhost:3001/countries/${id}`);
+            return dispatch({
+                type: "GET_DETAIL",
+                payload: json.data
+            })
+        }catch(err){
+            console.log(err)
+        }
+    }
+}
+
+export function getActivities(){
+    return async function(dispatch){
+        try{
+            let activities = await axios.get("http://localhost:3001/activity");
+            return dispatch({
+                type: "GET_ACTIVITIES",
+                payload: activities.data
+            })
+        }catch(err){
+            console.log(err)
+        }
+    }
+}
+

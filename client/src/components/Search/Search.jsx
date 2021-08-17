@@ -6,9 +6,6 @@ import { Link } from "react-router-dom";
 import { getCountries } from "../../actions";
 import { getSearch } from "../../actions";
 
-
-
-
 export default function Search({ handleGetSearch }) {
     
     const dispatch = useDispatch();

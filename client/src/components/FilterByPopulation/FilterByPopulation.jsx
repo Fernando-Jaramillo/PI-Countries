@@ -1,6 +1,6 @@
+import React from "react";
+
 export default function FilterByPopulation({ handleFilterByPopulation }){
-
-
     return(
         <div>
             <label htmlFor="population">Orden por población: </label>
