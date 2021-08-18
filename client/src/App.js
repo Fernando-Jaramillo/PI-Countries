@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LandingPage from './components/LandingPage/LandingPage';
 import Home from "./components/Home/Home.jsx";
@@ -13,7 +12,7 @@ function App() {
         <div>          
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home" component={Home} />
-          <Route exact path="/activity" component={Activity} />
+          <Route exact path="/activity" component={Activity} style={{all: 'unset'}}/>
           <Route excat path="/home/:id" component={CountryDetails} />
         </div>
         </>

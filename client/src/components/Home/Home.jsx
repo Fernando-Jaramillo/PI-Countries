@@ -2,6 +2,8 @@ import React from "react";
 import NavBar from "../NavBar/Navbar";
 import Cards from "../Cards/Cards";
 import Filters from "../Filters/Filters"
+import "./home.css"
+import logoHor from "../../img/logo-hor.png"
 
 import Pagination from "../Pagination/Pagination";
 import { useState, useEffect } from "react";
@@ -38,6 +40,7 @@ export default function Home() {
     // filter by continent
     const handleFilterByContinent = (value) => {
         dispatch(filterByContinent(value));
+        setCurrentPage(1);
     };
     // filter by alphabet
     const [order, setOrder] = useState("");
@@ -55,27 +58,35 @@ export default function Home() {
 
     const handleFilterByActivity = (act) => {
         dispatch(filterByActivity(act));
+        setCurrentPage(1);
     }
     
     return (
-        <div>
-        <NavBar />
-        <Filters
-            handleFilterByContinent={handleFilterByContinent}
-            handleFilterByAlphabet={handleFilterByAlphabet}
-            handleFilterByPopulation={handleFilterByPopulation}
-            handleFilterByActivity={handleFilterByActivity}
-        />
-        <Cards
-            allCountries={allCountries}
-            indexOfLastCountry={indexOfLastCountry}
-            indexofFirstCountry={indexofFirstCountry}
-        />
-        <Pagination
-            totalCountries={allCountries.length}
-            numbersPerpage={numbersPerPage}
-            paginate={paginate}
-        />
+        <div className="container-home">
+            <div className="left-home">
+                <img src={logoHor} className="logo-home" alt="logo of the website"/>
+                <Filters
+                    handleFilterByContinent={handleFilterByContinent}
+                    handleFilterByAlphabet={handleFilterByAlphabet}
+                    handleFilterByPopulation={handleFilterByPopulation}
+                    handleFilterByActivity={handleFilterByActivity}
+                />
+                <div className="pag-home">
+                    <Pagination
+                        totalCountries={allCountries.length}
+                        numbersPerpage={numbersPerPage}
+                        paginate={paginate}
+                    />
+                </div>
+            </div>
+            <div className="right-home">
+                <NavBar />
+                <Cards
+                    allCountries={allCountries}
+                    indexOfLastCountry={indexOfLastCountry}
+                    indexofFirstCountry={indexofFirstCountry}
+                />
+            </div>
         </div>
     );
 }

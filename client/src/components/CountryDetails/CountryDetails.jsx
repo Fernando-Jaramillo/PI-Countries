@@ -28,12 +28,12 @@ export default function Detail(props) {
                 <p>Población: {detail[0].population}</p>
             </div>
                 ):(
-                    <p1>Loading...</p1>
+                    <p>Loading...</p>
                 )
             }
             {detail.length > 0 && detail[0].activities.length > 0? 
                 detail[0].activities.map(ac =>(
-                        <div>
+                        <div key={ac.id}>
                             <p>Tipo {ac.name}</p>
                             <p>Dificultad: {ac.dificultyLevel}</p>
                             <p>Tiempo: {ac.term} min.</p>

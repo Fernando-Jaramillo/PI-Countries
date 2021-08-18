@@ -1,17 +1,14 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-// import "./navbar.css";
-import Search from "../Search/Search"
-import { getCountries } from "../../actions"
+import "./navbar.css";
+import btnNew from "../../img/btn-new-act.png";
 
-export default function Navbar({ handleGetSearch }) {
+export default function Navbar() {
     return (
         <div>
-            <h3>Navbar</h3>
-            <Link to="/home">Home</Link>
-            <Link to="/activity">Crear Actividad</Link>
-            <Search handleGetSearch={handleGetSearch}/>
+            <Link to="/activity">
+            <img src={btnNew} alt="" className="btn-crear"/>
+            </Link>
         </div>
     );
 }

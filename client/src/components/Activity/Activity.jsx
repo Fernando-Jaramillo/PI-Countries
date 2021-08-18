@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCountries } from "../../actions/";
 import { Link } from "react-router-dom";
 import { postActivity } from "../../actions";
+import "./activity.css"
+import btnHome from "../../img/btn-home.png"
 // error control
 function validate(state) {
     let errors = {};
     if(!state.name){
-        errors.name = "el nombre de la actividad es requerida";
+        errors.name = "El nombre de la actividad es requerida";
     } else if (!state.dificultyLevel) {
         errors.dificultyLevel = "La dificultad de la actividad es requerida";
     } else if (Number(state.dificultyLevel) > 5){
@@ -86,65 +88,85 @@ export default function Activity() {
 
     return (
         <div>
-            <Link to="/home"><button>Ir a Home</button></Link>
-            <form onSubmit={(e) => handleSubmit(e)}>
-            <label htmlFor="name">Nombre: </label>
-            <input
-                onChange={(e) => handleOnchange(e)}
-                type="text"
-                name="name"
-                value={bodyActivity.name}
-                id="name"
-            />
-            {errors.name && <p>{errors.name}</p>}
-            <label htmlFor="dificultyLevel">Dificultad: </label>
-            <input
-                onChange={(e) => handleOnchange(e)}
-                type="number"
-                name="dificultyLevel"
-                value={bodyActivity.dificultyLevel}
-                id="dificultyLevel"
-            />
-            {errors.dificultyLevel && <p>{errors.dificultyLevel}</p>}
-            <label htmlFor="term">Duración (min): </label>
-            <input
-                onChange={(e) => handleOnchange(e)}
-                type="text"
-                name="term"
-                value={bodyActivity.term}
-                id="term"
-            />
-            {errors.term && <p>{errors.term}</p>}
-            <label htmlFor="season">Temporada: </label>
-            <select onChange={(e) => handleOnchange(e)} name="season" id="season">
-                <option value="Otoño">Otoño</option>
-                <option value="Invierno">Invierno</option>
-                <option value="Verano">Verano</option>
-                <option value="Primavera">Primavera</option>
-            </select>
-            {errors.season && <p>{errors.season}</p>}
-            <label htmlFor="arrCountries">Países: </label>
-            <select
-                onChange={(e) => handleOnchange(e)}
-                name="arrCountries"
-                id="arrCountries"
-            >
-                {allCountries.map((c) => (
-                <option key={c.id} value={c.id}>
-                    {c.name}
-                </option>
-                ))}
-            </select>
-            {errors.arrCountries && <p>{errors.arrCountries}</p>}
-            {bodyActivity.arrCountries.length > 0 && <span>Has seleccionado estos países: </span>}
-            {bodyActivity.arrCountries.map((item) => (
-                <span key={item}>{item}, </span>
-            ))}
-            <button type="submit">Crear Actividad</button>
-            </form>
-            <Link to="/activity">
-            <button>Nueva Actividad</button>
-            </Link>
+            <div className="container-activity">
+                <div>
+                    <Link to="/home"><img src={btnHome} className="btn-home" alt=""/></Link>
+                </div>
+                <div className="container-form-act">
+                    <form onSubmit={(e) => handleSubmit(e)}>
+                    <label htmlFor="name">Nombre: </label>
+                    <div className="inp">
+                        <input
+                            onChange={(e) => handleOnchange(e)}
+                            type="text"
+                            name="name"
+                            value={bodyActivity.name}
+                            id="name"
+                        />
+                        {errors.name && <span>{errors.name}</span>}
+                    </div>
+                    <br/>
+                    <label htmlFor="dificultyLevel">Dificultad: </label>
+                    <div className="inp">
+                        <input
+                            onChange={(e) => handleOnchange(e)}
+                            type="number"
+                            name="dificultyLevel"
+                            value={bodyActivity.dificultyLevel}
+                            id="dificultyLevel"
+                        />
+                        {errors.dificultyLevel && <span>{errors.dificultyLevel}</span>}
+                    </div>
+                    <br/>
+                    <label htmlFor="term">Duración (min): </label>
+                    <div className="inp">
+                        <input
+                            onChange={(e) => handleOnchange(e)}
+                            type="text"
+                            name="term"
+                            value={bodyActivity.term}
+                            id="term"
+                        />
+                        {errors.term && <span>{errors.term}</span>}
+                    </div>
+                    <br/>
+                    <label htmlFor="season">Temporada: </label>
+                    <br/>
+                    <select onChange={(e) => handleOnchange(e)} name="season" id="season">
+                        <option value="Otoño">Otoño</option>
+                        <option value="Invierno">Invierno</option>
+                        <option value="Verano">Verano</option>
+                        <option value="Primavera">Primavera</option>
+                    </select>
+                    {errors.season && <span>{errors.season}</span>}
+                    <br/>
+                    <br/>
+                    <label htmlFor="arrCountries">Países: </label>
+                    <br/>
+                    <select
+                        onChange={(e) => handleOnchange(e)}
+                        name="arrCountries"
+                        id="arrCountries"
+                    >
+                        {allCountries.map((c) => (
+                        <option key={c.id} value={c.id}>
+                            {c.name}
+                        </option>
+                        ))}
+                    </select>
+                    {errors.arrCountries && <span>{errors.arrCountries}</span>}
+                    {bodyActivity.arrCountries.length > 0 && <span>Has seleccionado estos países: </span>}
+                    {bodyActivity.arrCountries.map((item) => (
+                        <span key={item}>{item}, </span>
+                    ))}
+                    <br/>
+                    <button type="submit">Crear Actividad</button>
+                    </form>
+                    <Link to="/activity">
+                    {/* <button>Nueva Actividad</button> */}
+                    </Link>
+                </div>
+            </div>    
         </div>
     );
 }

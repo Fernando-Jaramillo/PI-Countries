@@ -1,11 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./landingPage.css"
+import logo from "../../img/logo1.png";
 
 export default function LandingPage() {
-    return(
-        <div>
-            <h1>Este es Landing Page</h1>
-            <Link to="/home"><button>Lets go for countries</button></Link>
+    return (
+        <div className="background">
+            <div className="container-land">
+                <img className="img-land" src={logo} alt="world" />
+                <Link to="/home">
+                    <button className="butt-lan">VEAMOS LOS COUNTRIES</button>
+                </Link>
+            </div>
         </div>
-    )
+    );
 }

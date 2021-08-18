@@ -1,0 +1,35 @@
+*, *::after, *::before {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+.container-home{
+    display: float;
+
+}
+.logo-home{
+    width: 200px;
+}
+.left-home{
+    width: 400px;
+    height: 100vh;
+    padding: 70px;
+    background-color:#F3F4ED;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    float: left;
+}
+
+.pag-home{
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.right-home{
+    display: flex;
+    flex-direction: column;
+}

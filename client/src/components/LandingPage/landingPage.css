@@ -1,0 +1,40 @@
+.background{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../img/background.png");
+    background-size: cover;
+}
+
+.container-land{   
+    width: 500px; 
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    margin-top: 13%;
+    align-items: center;
+}
+
+.img-land{
+    width: 280px;
+    height: auto;
+}
+
+.butt-lan{
+    margin-top: 40px;
+    display: inline-block;
+    border: 2px solid;
+    padding: 12px 24px;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+    color: #87BD25;
+    background-color: #fdfdfd00;
+}
+
+.butt-lan:hover{
+    color: white;
+    background-color: #87BD25;
+}
