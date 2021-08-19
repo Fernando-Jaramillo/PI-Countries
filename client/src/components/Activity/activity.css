@@ -36,7 +36,7 @@ input{
 }
 
 span{
-    color:darkgreen;
+    color:red;
     font-size: 10px;
 }
 
@@ -48,6 +48,3 @@ button{
     margin-top: 20px;
 }
 
-.inp {
-
-}

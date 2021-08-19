@@ -114,6 +114,7 @@ export default function Activity() {
                             name="dificultyLevel"
                             value={bodyActivity.dificultyLevel}
                             id="dificultyLevel"
+                            min="0" max="5"
                         />
                         {errors.dificultyLevel && <span>{errors.dificultyLevel}</span>}
                     </div>

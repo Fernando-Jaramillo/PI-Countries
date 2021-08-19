@@ -13,7 +13,7 @@ function App() {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/activity" component={Activity} style={{all: 'unset'}}/>
-          <Route excat path="/home/:id" component={CountryDetails} />
+          <Route excat path="/home/:id" component={CountryDetails} style={{all: 'unset'}}/>
         </div>
         </>
       </Switch>

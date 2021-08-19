@@ -1,0 +1,49 @@
+.container-details{
+    display: flex;
+    flex-direction: column;
+}
+.container-left-right{
+    display: flex;
+}
+.flag-deta{
+    width: 320px;
+    margin-top: 6px;
+}
+.left-det{
+    float: left;
+    width: 400px;
+    margin-left: 150px;
+}
+.right-det{
+    float:right;
+    width: 500px;
+    text-align: left;
+}
+.id-det{
+    font-size: 200px;
+    font-family: 'Georama', sans-serif;
+    font-weight: 800;
+    color: rgb(179, 179, 179);
+    line-height: 0.7em;
+}
+
+.name-det{
+    font-size: 50px;
+    text-align: left;
+}
+
+.right-det p{
+    text-align: left; 
+    margin-bottom: 10px;
+}
+
+.no-act{
+    color: forestgreen;
+    font-size: 12px;
+}
+.container-act{
+    padding: 30px;
+}
+.act p{
+    text-align: right;
+}
